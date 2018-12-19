@@ -1,13 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const NavBarContainer = ({ children }) => (
+const NavBar = props => {
+  const { title, children } = props;
+
+  return (
+    <NavBarWrapper>
+      {title && <Title title={title} />}
+      <ToggleNavBtn />
+      <NavLinks links={children} />
+    </NavBarWrapper>
+  );
+};
+
+NavBar.propTypes = {
+  title: PropTypes.string
+};
+
+const NavBarWrapper = ({ children }) => (
   <nav className="navbar navbar-expand-sm navbar-light bg-light navigation">{children}</nav>
 );
 
-const NavBarTitle = ({ title }) => <a className="navbar-brand">{title}</a>;
+const Title = ({ title }) => <a className="navbar-brand">{title}</a>;
 
-const NavBarToggleButton = () => (
+const ToggleNavBtn = () => (
   <button
     className="navbar-toggler"
     type="button"
@@ -21,7 +37,7 @@ const NavBarToggleButton = () => (
   </button>
 );
 
-const NavBarLinks = ({ links }) => (
+const NavLinks = ({ links }) => (
   <div className="collapse navbar-collapse" id="navbarNav">
     <ul className="navbar-nav">
       {links.map((link, index) => (
@@ -32,21 +48,5 @@ const NavBarLinks = ({ links }) => (
     </ul>
   </div>
 );
-
-const NavBar = props => {
-  const { title, children } = props;
-
-  return (
-    <NavBarContainer>
-      {title && <NavBarTitle title={title} />}
-      <NavBarToggleButton />
-      <NavBarLinks links={children} />
-    </NavBarContainer>
-  );
-};
-
-NavBar.propTypes = {
-  title: PropTypes.string
-};
 
 export default NavBar;
