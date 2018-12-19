@@ -1,4 +1,26 @@
+.navigation {
+  margin-bottom: 20px;
+}
+
 .shelves-list {
-  max-width: 200px;
-  margin: 10px;
+  width: 100%;
+}
+
+.shelves-list .active {
+  font-weight: bold;
+}
+
+.book {
+  width: 12rem;
+  margin: 5px;
+}
+
+.shelf-lead {
+  margin-top: 10px;
+}
+
+.shelf-books {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
 }
