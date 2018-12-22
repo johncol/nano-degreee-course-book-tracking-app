@@ -21,7 +21,11 @@ const NavBarWrapper = ({ children }) => (
   <nav className="navbar navbar-expand-sm navbar-light bg-light navigation">{children}</nav>
 );
 
-const Title = ({ title }) => <a className="navbar-brand">{title}</a>;
+const Title = ({ title }) => (
+  <a className="navbar-brand" href="/">
+    {title}
+  </a>
+);
 
 const ToggleNavBtn = () => (
   <button

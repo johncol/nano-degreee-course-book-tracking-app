@@ -43,3 +43,13 @@ export const search = query =>
   })
     .then(res => res.json())
     .then(data => (data.books.error ? [] : data.books));
+
+export const getBooksGroupedByShelf = () =>
+  fetch(`${api}/books/non-existing-book-id`, {
+    method: 'PUT',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ shelf: 'none' })
+  }).then(res => res.json());

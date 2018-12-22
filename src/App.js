@@ -7,7 +7,7 @@ import ShelvesContainer from './components/ShelvesContainer';
 import SearchBooks from './components/SearchBooks';
 
 import './App.css';
-import sampleData from './api/books.json';
+import * as BooksAPI from './api/BooksAPI';
 
 class App extends Component {
   state = {
@@ -16,27 +16,54 @@ class App extends Component {
       { id: 'currentlyReading', name: 'Currently reading', path: 'currently-reading' },
       { id: 'read', name: 'Read', path: 'read' }
     ],
-    booksInShelves: [
-      { bookId: 'nggnmAEACAAJ', shelf: 'currentlyReading' },
-      { bookId: 'evuwdDLfAyYC', shelf: 'wantToRead' }
-    ]
+    booksInShelves: {
+      currentlyReading: [],
+      wantToRead: [],
+      read: [],
+      all: []
+    }
   };
 
+  addBooksToCorrespondingShelf = (booksIdsPerShelf, allBooks) => {
+    const shelfContainsBook = (booksInShelf, book) => booksInShelf.indexOf(book.id) !== -1;
+
+    const booksInShelves = { all: [] };
+    Object.keys(booksIdsPerShelf).forEach(shelf => {
+      const thisShelfContainsBook = shelfContainsBook.bind(null, booksIdsPerShelf[shelf]);
+      const booksInThisShelf = allBooks.filter(thisShelfContainsBook);
+      booksInShelves[shelf] = booksInThisShelf;
+      booksInShelves.all.push(...booksInThisShelf);
+    });
+
+    return booksInShelves;
+  };
+
+  updateBooksInShelvesState = apiResponses => {
+    const booksIdsPerShelf = apiResponses[0];
+    const allBooks = apiResponses[1];
+    const booksInShelves = this.addBooksToCorrespondingShelf(booksIdsPerShelf, allBooks);
+    this.setState({ booksInShelves });
+  };
+
+  componentDidMount() {
+    const booksIdsPerShelf = BooksAPI.getBooksGroupedByShelf();
+    const allBooks = BooksAPI.getAll();
+    Promise.all([booksIdsPerShelf, allBooks]).then(this.updateBooksInShelvesState);
+  }
+
   render() {
-    const { shelves } = this.state;
+    const { shelves, booksInShelves } = this.state;
     return (
       <div>
         <MainNavigation />
 
         <div className="content">
           <Route exact path="/" component={Welcome} />
-
           <Route
             path="/shelves"
-            render={() => <ShelvesContainer books={sampleData.books} shelves={shelves} />}
+            render={() => <ShelvesContainer booksInShelves={booksInShelves} shelves={shelves} />}
           />
-
-          <Route path="/search-books" render={() => <SearchBooks books={sampleData.books} />} />
+          <Route path="/search-books" render={() => <SearchBooks />} />
         </div>
       </div>
     );
