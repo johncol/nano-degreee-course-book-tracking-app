@@ -9,11 +9,11 @@ const ShelvesContainer = props => {
   const { booksInShelves, shelves } = props;
   return (
     <div className="shelves-container row">
-      <div className="col-sm-3">
+      <div className="col-sm-3 shelves-list-col">
         <ShelvesList shelves={shelves} />
       </div>
 
-      <div className="col-sm-9">
+      <div className="col-sm-9 shelf-col">
         <Route exact path="/shelves" render={() => <Shelf books={booksInShelves.all} />} />
 
         {shelves.map(shelf => (

@@ -1,0 +1,131 @@
+$pink: #b75959;
+$grey-light: #ddd;
+
+body,
+html {
+  background-color: #313538;
+  color: $grey-light;
+  overflow: hidden;
+}
+
+.shelves-list-col {
+  background-color: #fff;
+  height: 100vh;
+}
+
+.shelf-col {
+  padding: 0;
+}
+
+.navigation {
+}
+
+/* --- welcome --- */
+
+.welcome {
+  background-image: linear-gradient(to right bottom, rgba(#222, 0.9), rgba(#222, 0.9)), url(/assets/images/back.jpg);
+  background-size: cover;
+  background-position: top;
+  height: 100vh;
+
+  .welcome-intro {
+    max-width: 80%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    @media (max-width: 700px) {
+      max-width: 90%;
+      text-align: center;
+    }
+  }
+
+  .welcome-title {
+    font-weight: normal;
+    font-size: 450%;
+    color: $pink;
+    line-height: 1;
+
+    @media (max-width: 700px) {
+      font-size: 350%;
+    }
+  }
+
+  .welcome-lead {
+    font-size: 250%;
+    line-height: 1;
+
+    @media (max-width: 700px) {
+      font-size: 150%;
+    }
+  }
+}
+
+/* --- shelves-list --- */
+
+.shelves-list {
+  width: 100%;
+  padding-top: 30px;
+
+  .list-group-item {
+    border: none;
+    a {
+      color: #838385;
+      text-transform: uppercase;
+
+      &.active {
+        color: #212931;
+      }
+    }
+  }
+}
+
+/* --- book --- */
+
+.book {
+  width: 12rem;
+  margin: 5px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 0;
+  padding: 16px;
+
+  .book-title {
+    font-size: 15px;
+    color: $pink;
+    margin: 10px 0 0;
+  }
+
+  .book-cover {
+    height: 230px;
+    overflow: hidden;
+    background-size: cover;
+    background-position-x: 50%;
+
+    img {
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+}
+
+/* --- shelf --- */
+
+.shelf {
+  background-image: linear-gradient(to right bottom, rgba(#222, 0.9), rgba(#222, 0.9)), url(/assets/images/back.jpg);
+  background-size: cover;
+  background-position: top;
+  height: 100vh;
+  padding: 40px;
+
+  .shelf-name {
+    font-weight: normal;
+    font-variant: small-caps;
+  }
+
+  .shelf-books {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+}

@@ -12,9 +12,17 @@ const MainNavigation = () => {
       <NavLink to="/search-books" className="nav-link">
         Search books
       </NavLink>
-      <NavLink to="/manage-shelves" className="nav-link disabled">
-        Manage Shelves
-      </NavLink>
+      <a className="nav-link" href="https://github.com/johncol" target="_blank" rel="noopener noreferrer">
+        Github
+      </a>
+      <a
+        className="nav-link"
+        href="https://www.linkedin.com/in/john-cely-45784226/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        LinkedIn
+      </a>
     </NavBar>
   );
 };

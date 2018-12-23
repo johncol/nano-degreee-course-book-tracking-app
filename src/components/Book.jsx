@@ -5,9 +5,12 @@ const Book = props => {
   const { book } = props;
   return (
     <section className="card book">
-      <div className="card-body">
-        <h5 className="card-title">{book.title}</h5>
-      </div>
+      <div
+        className="book-cover"
+        alt={book.title}
+        style={{ backgroundImage: `url(${book.imageLinks.smallThumbnail})` }}
+      />
+      <h5 className="card-title book-title">{book.title}</h5>
     </section>
   );
 };

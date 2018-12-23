@@ -6,7 +6,7 @@ import Welcome from './components/Welcome';
 import ShelvesContainer from './components/ShelvesContainer';
 import SearchBooks from './components/SearchBooks';
 
-import './App.css';
+import './App.scss';
 import * as BooksAPI from './api/BooksAPI';
 
 class App extends Component {
