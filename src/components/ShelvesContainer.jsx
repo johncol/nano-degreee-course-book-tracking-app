@@ -2,18 +2,16 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+import ShelvesLayout from './common/ShelvesLayout';
 import ShelvesList from './ShelvesList';
 import Shelf from './Shelf';
 
 const ShelvesContainer = props => {
   const { booksInShelves, shelves } = props;
   return (
-    <div className="shelves-container row">
-      <div className="col-sm-3 shelves-list-col">
-        <ShelvesList shelves={shelves} />
-      </div>
-
-      <div className="col-sm-9 shelf-col">
+    <ShelvesLayout>
+      <ShelvesList shelves={shelves} />
+      <React.Fragment>
         <Route exact path="/shelves" render={() => <Shelf books={booksInShelves.all} />} />
 
         {shelves.map(shelf => (
@@ -23,8 +21,8 @@ const ShelvesContainer = props => {
             render={() => <Shelf books={booksInShelves[shelf.id]} shelf={shelf} />}
           />
         ))}
-      </div>
-    </div>
+      </React.Fragment>
+    </ShelvesLayout>
   );
 };
 
