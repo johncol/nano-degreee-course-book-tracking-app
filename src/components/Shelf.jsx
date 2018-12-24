@@ -3,8 +3,13 @@ import PropTypes from 'prop-types';
 
 import Book from './Book';
 
+function byTitle(book1, book2) {
+  return book1.title > book2.title ? 1 : -1;
+}
+
 const Shelf = props => {
-  const { books, shelf } = props;
+  const { books, shelf, onSetBookShelf } = props;
+
   return (
     <div className="shelf">
       <p className="lead">
@@ -17,8 +22,8 @@ const Shelf = props => {
       </p>
 
       <div className="shelf-books">
-        {books.map(book => (
-          <Book book={book} key={book.id} />
+        {books.sort(byTitle).map(book => (
+          <Book book={book} key={book.id} onSetBookShelf={onSetBookShelf} />
         ))}
       </div>
     </div>
@@ -27,7 +32,8 @@ const Shelf = props => {
 
 Shelf.propTypes = {
   books: PropTypes.arrayOf(PropTypes.object).isRequired,
-  shelf: PropTypes.object
+  shelf: PropTypes.object,
+  onSetBookShelf: PropTypes.func.isRequired
 };
 
 export default Shelf;

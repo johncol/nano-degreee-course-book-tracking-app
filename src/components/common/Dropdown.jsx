@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Dropdown = props => {
-  const { dropdownId, className, label, selected, selectedOptionProp, optionsLabelProp, items } = props;
+  const { dropdownId, className, label, selected, selectedOptionProp, optionsLabelProp, items, onItemSelected } = props;
   const fullDropdownId = 'dropdownMenuButton-' + dropdownId;
   return (
     <div className={'dropdown ' + className}>
@@ -18,8 +19,10 @@ const Dropdown = props => {
       <div className="dropdown-menu" aria-labelledby={fullDropdownId}>
         {items.map(item => (
           <button
+            key={item.id}
             type="button"
             className={'dropdown-item' + (item[selectedOptionProp] === selected ? ' selected-item' : '')}
+            onClick={() => onItemSelected(item)}
           >
             {item[optionsLabelProp]}
           </button>
@@ -27,6 +30,10 @@ const Dropdown = props => {
       </div>
     </div>
   );
+};
+
+Dropdown.propTypes = {
+  onItemSelected: PropTypes.func.isRequired
 };
 
 export default Dropdown;

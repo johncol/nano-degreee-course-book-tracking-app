@@ -1,5 +1,6 @@
 import React from 'react';
 import debounce from 'lodash/debounce';
+import PropTypes from 'prop-types';
 
 import Shelf from './Shelf.jsx';
 import * as BooksApi from './../api/BooksAPI';
@@ -25,6 +26,7 @@ class SearchBooks extends React.Component {
 
   render() {
     const { results, query } = this.state;
+    const { onSetBookShelf } = this.props;
     return (
       <div className="search-books">
         <div className="search-bar">
@@ -38,10 +40,14 @@ class SearchBooks extends React.Component {
             autoComplete="off"
           />
         </div>
-        <Shelf books={results} shelf={{ name: 'search' }} />
+        <Shelf books={results} shelf={{ name: 'search' }} onSetBookShelf={onSetBookShelf} />
       </div>
     );
   }
 }
+
+SearchBooks.propTypes = {
+  onSetBookShelf: PropTypes.func.isRequired
+};
 
 export default SearchBooks;

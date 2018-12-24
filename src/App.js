@@ -19,6 +19,35 @@ class App extends Component {
     }
   };
 
+  setBookShelf = (bookToUpdate, newShelf) => {
+    const oldShelfId = bookToUpdate.shelf;
+    const newShelfId = newShelf.id;
+    if (oldShelfId === newShelfId) {
+      return null;
+    }
+
+    const leavingOutBookToUpdate = bookInShelf => bookInShelf.id !== bookToUpdate.id;
+
+    this.setState(state => {
+      const oldShelfBooksList = state.booksInShelves[oldShelfId].filter(leavingOutBookToUpdate);
+      const updatedBook = {
+        ...bookToUpdate,
+        shelf: newShelfId
+      };
+      const newShelfBooksList = [...state.booksInShelves[newShelfId], updatedBook];
+      const newAllBooks = [...state.booksInShelves.all.filter(leavingOutBookToUpdate), updatedBook];
+
+      return {
+        booksInShelves: {
+          ...state.booksInShelves,
+          all: newAllBooks,
+          [oldShelfId]: oldShelfBooksList,
+          [newShelfId]: newShelfBooksList
+        }
+      };
+    });
+  };
+
   addBooksToCorrespondingShelf = (booksIdsPerShelf, allBooks) => {
     const shelfContainsBook = (booksInShelf, book) => booksInShelf.indexOf(book.id) !== -1;
 
@@ -54,8 +83,11 @@ class App extends Component {
 
         <div className="content">
           <Route exact path="/" component={Welcome} />
-          <Route path="/shelves" render={() => <ShelvesContainer booksInShelves={booksInShelves} />} />
-          <Route path="/search-books" render={() => <SearchBooks />} />
+          <Route
+            path="/shelves"
+            render={() => <ShelvesContainer booksInShelves={booksInShelves} onSetBookShelf={this.setBookShelf} />}
+          />
+          <Route path="/search-books" render={() => <SearchBooks onSetBookShelf={this.setBookShelf} />} />
         </div>
       </div>
     );

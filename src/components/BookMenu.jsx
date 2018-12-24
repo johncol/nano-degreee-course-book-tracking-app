@@ -1,9 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Dropdown from './common/Dropdown';
 import Shelves from '../constants/Shelves';
 
-const BookMenu = ({ book }) => {
+const BookMenu = ({ book, onSetBookShelf }) => {
   return (
     <Dropdown
       className="book-menu"
@@ -13,8 +14,13 @@ const BookMenu = ({ book }) => {
       selectedOptionProp="id"
       optionsLabelProp="name"
       items={Shelves}
+      onItemSelected={onSetBookShelf}
     />
   );
+};
+
+BookMenu.propTypes = {
+  onSetBookShelf: PropTypes.func.isRequired
 };
 
 export default BookMenu;
