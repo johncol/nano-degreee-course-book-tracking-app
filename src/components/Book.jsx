@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import BookMenu from './BookMenu';
+
 const Book = props => {
   const { book } = props;
   return (
@@ -11,6 +13,7 @@ const Book = props => {
         style={{ backgroundImage: `url(${book.imageLinks.smallThumbnail})` }}
       />
       <h5 className="card-title book-title">{book.title}</h5>
+      <BookMenu book={book} />
     </section>
   );
 };

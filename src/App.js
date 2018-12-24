@@ -11,11 +11,6 @@ import * as BooksAPI from './api/BooksAPI';
 
 class App extends Component {
   state = {
-    shelves: [
-      { id: 'wantToRead', name: 'Want to read', path: 'want-to-read' },
-      { id: 'currentlyReading', name: 'Currently reading', path: 'currently-reading' },
-      { id: 'read', name: 'Read', path: 'read' }
-    ],
     booksInShelves: {
       currentlyReading: [],
       wantToRead: [],
@@ -52,17 +47,14 @@ class App extends Component {
   }
 
   render() {
-    const { shelves, booksInShelves } = this.state;
+    const { booksInShelves } = this.state;
     return (
       <div>
         <MainNavigation />
 
         <div className="content">
           <Route exact path="/" component={Welcome} />
-          <Route
-            path="/shelves"
-            render={() => <ShelvesContainer booksInShelves={booksInShelves} shelves={shelves} />}
-          />
+          <Route path="/shelves" render={() => <ShelvesContainer booksInShelves={booksInShelves} />} />
           <Route path="/search-books" render={() => <SearchBooks />} />
         </div>
       </div>

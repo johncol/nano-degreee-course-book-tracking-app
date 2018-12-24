@@ -1,13 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
 import { NavLink } from 'react-router-dom';
 
-const ShelvesList = props => {
-  const { shelves } = props;
+import Shelves from '../constants/Shelves';
+
+const ShelvesList = () => {
   return (
     <ul className="list-group list-group-flush shelves-list">
-      {shelves.map(shelf => (
+      {Shelves.map(shelf => (
         <li key={shelf.id} className="list-group-item">
           <NavLink to={`/shelves/${shelf.path}`}>{shelf.name}</NavLink>
         </li>
@@ -16,8 +15,6 @@ const ShelvesList = props => {
   );
 };
 
-ShelvesList.propTypes = {
-  shelves: PropTypes.arrayOf(PropTypes.object).isRequired
-};
+ShelvesList.propTypes = {};
 
 export default ShelvesList;

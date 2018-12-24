@@ -88,7 +88,8 @@ html {
   margin: 5px;
   background: rgba(0, 0, 0, 0.3);
   border-radius: 0;
-  padding: 16px;
+  padding: 35px 16px 16px;
+  position: relative;
 
   .book-title {
     font-size: 15px;
@@ -105,6 +106,47 @@ html {
     img {
       width: 100%;
       max-width: 100%;
+    }
+  }
+}
+
+/* --- book-menu --- */
+.book-menu {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  .dropdown-toggle {
+    padding: 4px 11px;
+    border-radius: 0;
+    border: none;
+    font-size: 14px;
+    background: rgba(0, 0, 0, 0.4);
+    color: $grey-light;
+    text-transform: lowercase;
+  }
+
+  .dropdown-menu {
+    padding: 0;
+    background-color: transparent;
+  }
+
+  .dropdown-item {
+    border-radius: 0;
+    border: none;
+    font-size: 14px;
+    background: rgba(0, 0, 0, 0.8);
+    color: $grey-light;
+    transition: all 0.2s ease;
+
+    &.selected-item {
+      font-weight: bold;
+    }
+
+    &:not(.selected-item):hover {
+      background: rgba(0, 0, 0, 0.95);
+      color: #fff;
+      cursor: pointer;
     }
   }
 }

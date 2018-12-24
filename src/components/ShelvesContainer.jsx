@@ -5,16 +5,17 @@ import PropTypes from 'prop-types';
 import ShelvesLayout from './common/ShelvesLayout';
 import ShelvesList from './ShelvesList';
 import Shelf from './Shelf';
+import Shelves from '../constants/Shelves';
 
 const ShelvesContainer = props => {
-  const { booksInShelves, shelves } = props;
+  const { booksInShelves } = props;
   return (
     <ShelvesLayout>
-      <ShelvesList shelves={shelves} />
+      <ShelvesList />
       <React.Fragment>
         <Route exact path="/shelves" render={() => <Shelf books={booksInShelves.all} />} />
 
-        {shelves.map(shelf => (
+        {Shelves.map(shelf => (
           <Route
             key={shelf.id}
             path={'/shelves/' + shelf.path}
@@ -27,8 +28,7 @@ const ShelvesContainer = props => {
 };
 
 ShelvesContainer.propTypes = {
-  booksInShelves: PropTypes.object.isRequired,
-  shelves: PropTypes.arrayOf(PropTypes.object).isRequired
+  booksInShelves: PropTypes.object.isRequired
 };
 
 export default ShelvesContainer;

@@ -32,7 +32,7 @@ class SearchBooks extends React.Component {
             type="search"
             className="form-control"
             id="search-input"
-            placeholder="Search books by name or author"
+            placeholder="Search books by name"
             value={query}
             onChange={this.updateQuery}
             autoComplete="off"
