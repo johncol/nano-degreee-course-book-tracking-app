@@ -1,7 +1,6 @@
 import React from 'react';
 
-const Notification = ({ children, onHide, millis = 1000 }) => {
-  setTimeout(onHide, millis);
+const Notification = ({ children }) => {
   return (
     <div className="notification alert alert-info" role="alert">
       {children}

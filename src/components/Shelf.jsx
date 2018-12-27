@@ -2,10 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Book from './Book';
-
-const byTitle = (book1, book2) => {
-  return book1.title > book2.title ? 1 : -1;
-};
+import { byTitle } from './../utils/book-utils';
 
 const Shelf = props => {
   const { books, onSetBookShelf } = props;

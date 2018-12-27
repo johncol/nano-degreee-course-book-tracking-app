@@ -1,5 +1,6 @@
 $pink: #b75959;
 $grey-light: #ddd;
+$breakpoint: 575px;
 
 body {
   background-color: #313538;
@@ -72,7 +73,7 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
 
-    @media (max-width: 700px) {
+    @media screen and (max-width: $breakpoint) {
       max-width: 90%;
       text-align: center;
     }
@@ -84,7 +85,7 @@ body {
     color: $pink;
     line-height: 1;
 
-    @media (max-width: 700px) {
+    @media screen and (max-width: $breakpoint) {
       font-size: 350%;
     }
   }
@@ -93,32 +94,8 @@ body {
     font-size: 250%;
     line-height: 1;
 
-    @media (max-width: 700px) {
+    @media screen and (max-width: $breakpoint) {
       font-size: 150%;
-    }
-  }
-}
-
-/* --- shelves-list --- */
-
-.shelves-list {
-  width: 100%;
-  padding-top: 30px;
-
-  @media screen and (min-width: 700px) {
-    font-size: 20px;
-  }
-
-  .list-group-item {
-    border: none;
-    a {
-      color: #838385;
-      text-transform: uppercase;
-
-      &.active {
-        color: #212931;
-        text-decoration: underline;
-      }
     }
   }
 }
@@ -151,7 +128,7 @@ body {
   padding: 35px 16px 16px;
   position: relative;
 
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: $breakpoint) {
     width: 7rem;
     padding: 35px 0px 10px;
   }
@@ -162,7 +139,7 @@ body {
     background-size: cover;
     background-position-x: 50%;
 
-    @media screen and (max-width: 700px) {
+    @media screen and (max-width: $breakpoint) {
       height: 150px;
     }
   }
@@ -173,7 +150,7 @@ body {
     margin: 10px 0 0;
     text-align: center;
 
-    @media screen and (max-width: 700px) {
+    @media screen and (max-width: $breakpoint) {
       font-size: 13px;
       margin-left: 3px;
       margin-right: 3px;
@@ -211,6 +188,11 @@ body {
     background: rgba(0, 0, 0, 0.4);
     color: $grey-light;
     text-transform: lowercase;
+
+    @media screen and (max-width: $breakpoint) {
+      padding: 5px 5px;
+      font-size: 12px;
+    }
   }
 
   .dropdown-menu {
@@ -225,6 +207,10 @@ body {
     background: rgba(0, 0, 0, 0.8);
     color: $grey-light;
     transition: all 0.2s ease;
+
+    @media screen and (max-width: $breakpoint) {
+      font-size: 12px;
+    }
 
     &.selected-item {
       font-weight: bold;
