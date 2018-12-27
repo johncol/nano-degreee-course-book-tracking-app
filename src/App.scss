@@ -156,6 +156,17 @@ body {
     padding: 35px 0px 10px;
   }
 
+  .book-cover {
+    height: 230px;
+    overflow: hidden;
+    background-size: cover;
+    background-position-x: 50%;
+
+    @media screen and (max-width: 700px) {
+      height: 150px;
+    }
+  }
+
   .book-title {
     font-size: 15px;
     color: $pink;
@@ -169,14 +180,19 @@ body {
     }
   }
 
-  .book-cover {
-    height: 230px;
-    overflow: hidden;
-    background-size: cover;
-    background-position-x: 50%;
+  .book-authors {
+    font-size: 14px;
+    color: #878787;
+    margin: 0;
+    text-align: center;
 
-    @media screen and (max-width: 700px) {
-      height: 150px;
+    :not(.book-author) {
+      font-size: 12px;
+      font-style: italic;
+    }
+
+    .book-author {
+      display: block;
     }
   }
 }
