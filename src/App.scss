@@ -1,23 +1,60 @@
 $pink: #b75959;
 $grey-light: #ddd;
 
-body,
-html {
+body {
   background-color: #313538;
   color: $grey-light;
-  overflow: hidden;
-}
-
-.shelves-list-col {
-  background-color: #fff;
-  height: 100vh;
-}
-
-.shelf-col {
-  padding: 0;
+  background-image: linear-gradient(to right bottom, rgba(#222, 0.9), rgba(#222, 0.9)), url(/assets/images/back.jpg);
 }
 
 .navigation {
+  .nav-item {
+    text-align: center;
+  }
+}
+
+.notification {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  width: 50%;
+  transform: translateX(-50%);
+  opacity: 0.9;
+  border-radius: 0;
+}
+
+/* --- loader --- */
+
+.lds-dual-ring {
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+  z-index: 2;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.lds-dual-ring:after {
+  content: ' ';
+  display: block;
+  width: 46px;
+  height: 46px;
+  margin: 1px;
+  border-radius: 50%;
+  border: 5px solid #fff;
+  border-color: #fff transparent #fff transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* --- welcome --- */
@@ -68,6 +105,10 @@ html {
   width: 100%;
   padding-top: 30px;
 
+  @media screen and (min-width: 700px) {
+    font-size: 20px;
+  }
+
   .list-group-item {
     border: none;
     a {
@@ -76,7 +117,26 @@ html {
 
       &.active {
         color: #212931;
+        text-decoration: underline;
       }
+    }
+  }
+}
+
+/* --- search-books --- */
+
+.search-books {
+  .form-control {
+    border-radius: 0;
+    border: 0;
+    color: #868686;
+    background: gainsboro;
+    font-size: 14px;
+    height: auto;
+    padding: 0.5em;
+
+    &::placeholder {
+      color: rgba(#868686, 0.5);
     }
   }
 }
@@ -91,11 +151,22 @@ html {
   padding: 35px 16px 16px;
   position: relative;
 
+  @media screen and (max-width: 700px) {
+    width: 7rem;
+    padding: 35px 0px 10px;
+  }
+
   .book-title {
     font-size: 15px;
     color: $pink;
     margin: 10px 0 0;
     text-align: center;
+
+    @media screen and (max-width: 700px) {
+      font-size: 13px;
+      margin-left: 3px;
+      margin-right: 3px;
+    }
   }
 
   .book-cover {
@@ -104,9 +175,8 @@ html {
     background-size: cover;
     background-position-x: 50%;
 
-    img {
-      width: 100%;
-      max-width: 100%;
+    @media screen and (max-width: 700px) {
+      height: 150px;
     }
   }
 }
@@ -155,10 +225,6 @@ html {
 /* --- shelf --- */
 
 .shelf {
-  background-image: linear-gradient(to right bottom, rgba(#222, 0.9), rgba(#222, 0.9)), url(/assets/images/back.jpg);
-  background-size: cover;
-  background-position: top;
-  height: 100vh;
   padding: 40px;
 
   .shelf-name {

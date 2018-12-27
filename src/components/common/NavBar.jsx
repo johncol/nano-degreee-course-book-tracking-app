@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link, NavLink } from 'react-router-dom';
 
 const NavBar = props => {
   const { title, children } = props;
@@ -22,9 +23,9 @@ const NavBarWrapper = ({ children }) => (
 );
 
 const Title = ({ title }) => (
-  <a className="navbar-brand" href="/">
+  <Link className="navbar-brand" to="/">
     {title}
-  </a>
+  </Link>
 );
 
 const ToggleNavBtn = () => (
@@ -40,6 +41,8 @@ const ToggleNavBtn = () => (
     <span className="navbar-toggler-icon" />
   </button>
 );
+
+export const NavItem = props => <NavLink {...props} className="nav-link" />;
 
 const NavLinks = ({ links }) => (
   <div className="collapse navbar-collapse" id="navbarNav">

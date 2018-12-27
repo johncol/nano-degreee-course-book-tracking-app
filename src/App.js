@@ -48,6 +48,22 @@ class App extends Component {
     });
   };
 
+  addBookToShelf = (bookToAdd, shelf) => {
+    this.setState(state => {
+      bookToAdd.shelf = shelf.id;
+      const newShelfBooksList = [...state.booksInShelves[shelf.id], bookToAdd];
+      const newAllBooks = [...state.booksInShelves.all, bookToAdd];
+
+      return {
+        booksInShelves: {
+          ...state.booksInShelves,
+          all: newAllBooks,
+          [shelf.id]: newShelfBooksList
+        }
+      };
+    });
+  };
+
   addBooksToCorrespondingShelf = (booksIdsPerShelf, allBooks) => {
     const shelfContainsBook = (booksInShelf, book) => booksInShelf.indexOf(book.id) !== -1;
 
@@ -87,7 +103,7 @@ class App extends Component {
             path="/shelves"
             render={() => <ShelvesContainer booksInShelves={booksInShelves} onSetBookShelf={this.setBookShelf} />}
           />
-          <Route path="/search-books" render={() => <SearchBooks onSetBookShelf={this.setBookShelf} />} />
+          <Route path="/search-books" render={() => <SearchBooks onSetBookShelf={this.addBookToShelf} />} />
         </div>
       </div>
     );
