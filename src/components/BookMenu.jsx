@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Dropdown from './common/Dropdown';
-import Shelves from '../constants/Shelves';
+import Shelves, { labelFor } from '../constants/Shelves';
 
 const BookMenu = ({ book, onSetBookShelf }) => {
   return (
     <Dropdown
       className="book-menu"
       dropdownId={book.id}
-      label="Status"
+      label={labelFor(book.shelf) || 'add to'}
       selected={book.shelf}
       selectedOptionProp="id"
       optionsLabelProp="name"

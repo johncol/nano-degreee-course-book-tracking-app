@@ -4,4 +4,9 @@ const Shelves = [
   { id: 'read', name: 'Read', path: 'read' }
 ];
 
+const ShelvesLabels = {};
+Shelves.forEach(shelf => (ShelvesLabels[shelf.id] = shelf.name));
+
+export const labelFor = shelfId => ShelvesLabels[shelfId];
+
 export default Shelves;

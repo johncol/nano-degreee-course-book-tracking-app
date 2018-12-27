@@ -26,45 +26,48 @@ class App extends Component {
       return null;
     }
 
-    const leavingOutBookToUpdate = bookInShelf => bookInShelf.id !== bookToUpdate.id;
+    BooksAPI.update(bookToUpdate, newShelfId).then(() => {
+      const leavingOutBookToUpdate = bookInShelf => bookInShelf.id !== bookToUpdate.id;
+      this.setState(state => {
+        const oldShelfBooksList = state.booksInShelves[oldShelfId].filter(leavingOutBookToUpdate);
+        const updatedBook = {
+          ...bookToUpdate,
+          shelf: newShelfId
+        };
+        const newShelfBooksList = [...state.booksInShelves[newShelfId], updatedBook];
+        const newAllBooks = [...state.booksInShelves.all.filter(leavingOutBookToUpdate), updatedBook];
 
-    this.setState(state => {
-      const oldShelfBooksList = state.booksInShelves[oldShelfId].filter(leavingOutBookToUpdate);
-      const updatedBook = {
-        ...bookToUpdate,
-        shelf: newShelfId
-      };
-      const newShelfBooksList = [...state.booksInShelves[newShelfId], updatedBook];
-      const newAllBooks = [...state.booksInShelves.all.filter(leavingOutBookToUpdate), updatedBook];
-
-      return {
-        booksInShelves: {
-          ...state.booksInShelves,
-          all: newAllBooks,
-          [oldShelfId]: oldShelfBooksList,
-          [newShelfId]: newShelfBooksList
-        }
-      };
+        return {
+          booksInShelves: {
+            ...state.booksInShelves,
+            all: newAllBooks,
+            [oldShelfId]: oldShelfBooksList,
+            [newShelfId]: newShelfBooksList
+          }
+        };
+      });
     });
   };
 
   addBookToShelf = (bookToAdd, shelf) => {
-    this.setState(state => {
-      bookToAdd.shelf = shelf.id;
-      const newShelfBooksList = [...state.booksInShelves[shelf.id], bookToAdd];
-      const newAllBooks = [...state.booksInShelves.all, bookToAdd];
+    BooksAPI.update(bookToAdd, shelf.id).then(() => {
+      this.setState(state => {
+        bookToAdd.shelf = shelf.id;
+        const newShelfBooksList = [...state.booksInShelves[shelf.id], bookToAdd];
+        const newAllBooks = [...state.booksInShelves.all, bookToAdd];
 
-      return {
-        booksInShelves: {
-          ...state.booksInShelves,
-          all: newAllBooks,
-          [shelf.id]: newShelfBooksList
-        }
-      };
+        return {
+          booksInShelves: {
+            ...state.booksInShelves,
+            all: newAllBooks,
+            [shelf.id]: newShelfBooksList
+          }
+        };
+      });
     });
   };
 
-  addBooksToCorrespondingShelf = (booksIdsPerShelf, allBooks) => {
+  organizeBooksInShelves = (booksIdsPerShelf, allBooks) => {
     const shelfContainsBook = (booksInShelf, book) => booksInShelf.indexOf(book.id) !== -1;
 
     const booksInShelves = { all: [] };
@@ -81,7 +84,7 @@ class App extends Component {
   updateBooksInShelvesState = apiResponses => {
     const booksIdsPerShelf = apiResponses[0];
     const allBooks = apiResponses[1];
-    const booksInShelves = this.addBooksToCorrespondingShelf(booksIdsPerShelf, allBooks);
+    const booksInShelves = this.organizeBooksInShelves(booksIdsPerShelf, allBooks);
     this.setState({ booksInShelves });
   };
 
