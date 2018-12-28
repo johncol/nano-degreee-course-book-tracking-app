@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/johncol/react-nano-book-tracking-app/precache-manifest.414f8a3f15752bcc7d2b7790322a4150.js"
+  "/react-nano-book-tracking-app/precache-manifest.052112ca88b8bbbf3616add92a158ab5.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/johncol/react-nano-book-tracking-app/index.html", {
+workbox.routing.registerNavigationRoute("/react-nano-book-tracking-app/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });
